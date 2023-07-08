@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+zmienna imie ma wartość : {{ imie  }}<br>
+zmienna lista ma wartość : {{ lista }}<br>
+<table>
+    <thead>
+    <tr>
+        <th>WARTOSC Elementow listy</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in lista %}
+        <tr> <td>{{ item }}</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
