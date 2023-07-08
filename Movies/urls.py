@@ -22,6 +22,10 @@ from movie_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.IndexView.as_view(), name='index'),
+    path("losuj/<int:swinka>/<int:zajaczek>/",views.LosujView.as_view(),name='losuj'),
     path("szablon/", views.IndexViewTemplate.as_view(), name='index_template'),
     path("lista/", views.ShowElementOfTheList.as_view(), name='lista'),
+    path("addPerson/", views.AddPersonView.as_view(), name='add_person'),
+    path("persons/", views.PersonsView.as_view(), name="person_list"),
+    path("person/<int:id>/", views.PersonDetailView.as_view(), name="person_detail")
 ]

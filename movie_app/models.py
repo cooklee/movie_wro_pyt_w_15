@@ -6,8 +6,8 @@ class Person(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
 
-    #movie_set
-    #movie_set
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 class Genre(models.Model):
