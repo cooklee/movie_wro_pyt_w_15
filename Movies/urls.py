@@ -32,4 +32,5 @@ urlpatterns = [
     path("genre/<int:pk>/", views.GenreUpdateView.as_view(), name="genre_update"),
     path('add_person_form/', forms_views.AddPersonFormView.as_view(), name='add_person_form_view'),
     path('add_movie_form/', forms_views.AddMovieFormView.as_view(), name='add_movie_form_view'),
+    path('add_movie_model_form/', forms_views.AddMovieModelFormView.as_view(), name='add_movie_model_form_view'),
 ]
