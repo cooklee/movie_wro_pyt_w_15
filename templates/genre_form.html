@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="nazwa" value="{{ genre.name }}">
+        <input type="submit">
+    </form>
+    <ul>
+    {% for genre in genres %}
+        <li><a href="/genre/{{genre.id }}/"> {{ genre.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,5 +14,9 @@ To jest bazowa część szablonu BASE.html
 {% block zawartosc %}
     Witaj !!!@#
 {% endblock %}
-</p></body>
+</p>
+data: {{ date }}
+swinak: {{ swinka }}
+<img src="{% static 'Ash_Tree_-_geograph.org.uk_-_590710.jpg' %}">
+</body>
 </html>

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from movie_app import views
+from movie_app import views, forms_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,10 @@ urlpatterns = [
     path("szablon/", views.IndexViewTemplate.as_view(), name='index_template'),
     path("lista/", views.ShowElementOfTheList.as_view(), name='lista'),
     path("addPerson/", views.AddPersonView.as_view(), name='add_person'),
+    path("addgenre/", views.AddGenreView.as_view(), name='add_genre'),
     path("persons/", views.PersonsView.as_view(), name="person_list"),
-    path("person/<int:id>/", views.PersonDetailView.as_view(), name="person_detail")
+    path("person/<int:id>/", views.PersonDetailView.as_view(), name="person_detail"),
+    path("genre/<int:pk>/", views.GenreUpdateView.as_view(), name="genre_update"),
+    path('add_person_form/', forms_views.AddPersonFormView.as_view(), name='add_person_form_view'),
+    path('add_movie_form/', forms_views.AddMovieFormView.as_view(), name='add_movie_form_view'),
 ]
