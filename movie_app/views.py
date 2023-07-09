@@ -1,13 +1,15 @@
 import random
 from datetime import datetime
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views import View
 
-from movie_app.models import Person, Genre
+from movie_app.forms import AddReviewForm
+from movie_app.models import Person, Genre, Movie
 
 
 class IndexView(View):
@@ -42,7 +44,7 @@ class AddPersonView(View):
         Person.objects.create(first_name=first_name, last_name=last_name)
         return redirect('add_person')
 
-class AddGenreView(View):
+class AddGenreView(LoginRequiredMixin, View):
 
     def get(self, request):
         genres = Genre.objects.all()
@@ -86,3 +88,28 @@ class GenreUpdateView(View):
         genre.name = name
         genre.save()
         return redirect('add_genre')
+
+
+class AddReviewToMovieView(View):
+
+    def get(self, request, id_movie):
+        form = AddReviewForm()
+        return render(request, 'form.html', {'form':form})
+
+    def post(self, request, id_movie):
+        form = AddReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            movie = Movie.objects.get(pk=id_movie)
+            user = request.user
+            review.user = user
+            review.movie = movie
+            review.save()
+            return redirect('index_template')
+        return render(request, 'form.html', {'form': form})
+
+class MovieDetailView(View):
+
+    def get(self, request, id):
+        movie = Movie.objects.get(pk=id)
+        return render(request, 'movie_detail.html', {'movie':movie})

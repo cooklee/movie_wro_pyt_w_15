@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
@@ -46,7 +46,16 @@ class LoginUserView(View):
             username =form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
+            url = request.GET.get('next', 'index_template')
             if user is not  None:
                 login(request, user)
-            return redirect("index_template")
+            return redirect(url)
         return render(request, 'form.html', {'form': form})
+
+
+class LogoutView(View):
+
+    def get(self, request):
+        logout(request)
+        return redirect('index_template')
+

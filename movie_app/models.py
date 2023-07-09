@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -27,3 +28,9 @@ class Movie(models.Model):
     director = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='directed_by')
     screenplay = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='writen')
     genres = models.ManyToManyField(Genre)
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    text = models.TextField()

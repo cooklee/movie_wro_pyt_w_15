@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from movie_app.models import Person, Genre, Movie
+from movie_app.models import Person, Genre, Movie, Review
 from movie_app.validators import check_len
 
 
@@ -54,3 +54,10 @@ class AddMovieModelForm(forms.ModelForm):
         widgets = {
             'genres': forms.CheckboxSelectMultiple
         }
+
+
+class AddReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ['text']
