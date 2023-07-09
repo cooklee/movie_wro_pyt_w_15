@@ -9,7 +9,19 @@
     <title>Document</title>
 </head>
 <body>
-To jest bazowa część szablonu BASE.html
+<p>
+    Witaj {{ user.username }}!
+</p>
+<ul>
+    <li><a href="{% url 'add_person' %}">Dodawanie Osob</a> </li>
+    <li><a href="{% url 'add_movie_model_form_view' %}">Dodawanie filmow</a> </li>
+    <li><a href="{% url 'add_genre' %}">Dodawanie Genre</a> </li>
+    <li><a href="{% url 'person_list' %}">Lista osob</a> </li>
+    <li><a href="{% url 'user_list' %}">Lista urzytkownikow</a> </li>
+    <li><a href="{% url 'user_add' %}">dodaj u</a> </li>
+    <li><a href="{% url 'login' %}">login</a> </li>
+    <li><a >Lista Filmow</a> </li>
+</ul>
 <p>
 {% block zawartosc %}
     Witaj !!!@#
