@@ -8,6 +8,7 @@ from movie_app.validators import check_len
 
 class Person(models.Model):
     first_name = models.CharField(max_length=128)
+    middle_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
     year = models.IntegerField(default=1900)
 

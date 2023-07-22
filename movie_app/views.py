@@ -1,7 +1,7 @@
 import random
 from datetime import datetime
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -44,7 +44,11 @@ class AddPersonView(View):
         Person.objects.create(first_name=first_name, last_name=last_name)
         return redirect('add_person')
 
-class AddGenreView(LoginRequiredMixin, View):
+class AddGenreView(UserPassesTestMixin, View):
+
+    def test_func(self):
+        user = self.kwargs['id']
+        return user.username == 'cooklee'
 
     def get(self, request):
         genres = Genre.objects.all()
