@@ -15,10 +15,7 @@ class AddPersonFormView(View):
     def post(self, request):
         form = AddPersonForm(request.POST)
         if form.is_valid():
-            first_name = form.cleaned_data.get('first_name')
-            last_name = form.cleaned_data.get('last_name')
-            year = form.cleaned_data.get('year')
-            Person.objects.create(first_name=first_name, last_name=last_name, year=year)
+            Person.objects.create(**form.cleaned_data)
             return redirect('person_list')
         return render(request, 'form.html', {'form': form})
 

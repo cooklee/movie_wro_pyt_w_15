@@ -41,7 +41,7 @@ class AddPersonView(View):
     def post(self, request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        Person.objects.create(first_name=first_name, last_name=last_name)
+        Person.objects.create(**request.POST)
         return redirect('add_person')
 
 class AddGenreView(UserPassesTestMixin, View):
