@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -41,7 +42,7 @@ class AddMovieFormView(View):
         return render(request, 'form.html', {'form': form})
 
 
-class AddMovieModelFormView(View):
+class AddMovieModelFormView(LoginRequiredMixin, View):
 
     def get(self, request):
         form = AddMovieModelForm()

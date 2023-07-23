@@ -27,7 +27,7 @@ class Movie(models.Model):
     year = models.IntegerField()
     director = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='directed_by')
     screenplay = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='writen')
-    genres = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre, blank=True)
 
     def __str__(self):
         return self.title

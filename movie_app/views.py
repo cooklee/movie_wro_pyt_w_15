@@ -41,10 +41,10 @@ class AddPersonView(View):
     def post(self, request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        Person.objects.create(**request.POST)
+        Person.objects.create(first_name=first_name, last_name=last_name)
         return redirect('add_person')
 
-class AddGenreView(UserPassesTestMixin, View):
+class AddGenreView(View):
 
     def test_func(self):
         user = self.kwargs['id']
@@ -94,7 +94,7 @@ class GenreUpdateView(View):
         return redirect('add_genre')
 
 
-class AddReviewToMovieView(View):
+class AddReviewToMovieView(LoginRequiredMixin, View):
 
     def get(self, request, id_movie):
         form = AddReviewForm()
